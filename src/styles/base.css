@@ -1,0 +1,23 @@
+/* base.css */
+/* Red Hat Text, self-hosted from /src/assets/fonts.
+   Only the three weights actually used in the design are loaded
+   (400/600/700) — add more @font-face blocks here if a new weight
+   is introduced. */
+
+@layer base {
+  @font-face {
+    font-display: swap;
+    font-family: "Plus Jakarta Sans";
+    font-style: normal;
+    font-weight: 500;
+    src: url("../assets/fonts/static/PlusJakartaSans-Medium.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-display: swap;
+    font-family: "Plus Jakarta Sans";
+    font-style: normal;
+    font-weight: 700;
+    src: url("../assets/fonts/static/PlusJakartaSans-Bold.ttf") format("truetype");
+  }
+}
