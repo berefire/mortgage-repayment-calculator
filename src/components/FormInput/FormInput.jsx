@@ -9,7 +9,7 @@ function FormInput({
   const errorId = `${id}-error`;
 
   return (
-    <div className="flex flex-col gap-3 items-start">
+    <div className="flex flex-1 flex-col gap-3 items-start">
       <label htmlFor={id} className="font-body text-[1rem] leading-normal font-medium text-slate-700">
         {label}
       </label>
@@ -31,7 +31,7 @@ function FormInput({
           inputMode="decimal"
           aria-invalid={!!error}
           aria-describedby={error ? errorId : undefined}
-          className="flex-1 min-w-0 px-4 py-3 font-body font-bold text-slate-900 outline-none"
+          className="flex-1 min-w-0 px-4 py-3 font-body font-bold text-slate-900 outline-none focus:bg-white"
           {...inputProps}
         />
 
