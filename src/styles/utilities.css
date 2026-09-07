@@ -4,3 +4,7 @@
     outline-offset: 0.125em;
   }
 }
+
+@utility focus-ring-slave {
+  --focus-ring-color: var(--color-slate-700);
+}
