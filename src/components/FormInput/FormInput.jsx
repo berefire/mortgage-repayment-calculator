@@ -9,7 +9,7 @@ function FormInput({
   const errorId = `${id}-error`;
 
   return (
-    <div className="flex flex-1 flex-col gap-3 items-start">
+    <div className="flex flex-1 flex-col min-w-0 gap-3 items-start">
       <label htmlFor={id} className="font-body text-[1rem] leading-normal font-medium text-slate-700">
         {label}
       </label>
