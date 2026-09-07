@@ -43,3 +43,15 @@ export const ClearAll = {
         await expect(args.onClear).toHaveBeenCalled();
     }
 }
+
+export const ValidationErrors = {
+    play: async ({ canvas, userEvent }) => {
+        const submitButton = canvas.getByRole('button', { name: /calculate repayments/i });
+
+        await userEvent.click(submitButton);
+
+        await expect(canvas.getAllByText('This field is required')).toHaveLength(4);
+        await expect(canvas.getByText('Results shown here')).toBeInTheDocument();
+        await expect(canvas.queryByText('NaN')).not.toBeInTheDocument();
+    }
+}

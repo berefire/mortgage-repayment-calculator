@@ -6,28 +6,49 @@ import Button from "@/components/Button/Button";
 const calculatorIconSrc = `${import.meta.env.BASE_URL}assets/images/icon-calculator.svg`;
 
 function MortgageForm({ onCalculate, onClear }) {
-  const [amount, setAmount] = useState("");
-  const [term, setTerm] = useState("");
-  const [rate, setRate] = useState("");
-  const [mortgageType, setMortgageType] = useState("");
+    const [amount, setAmount] = useState("");
+    const [term, setTerm] = useState("");
+    const [rate, setRate] = useState("");
+    const [mortgageType, setMortgageType] = useState("");
+    const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onCalculate({ amount, term, rate, mortgageType });
-  };
+    const validate = () => {
+        const newErrors = {};
 
-  const handleClear = () => {
-    setAmount("");
-    setTerm("");
-    setRate("");
-    setMortgageType("");
-    onClear();
-  };
+        if (!amount || isNaN(Number(amount))) newErrors.amount = "This field is required";
+        if (!term || isNaN(Number(term))) newErrors.term = "This field is required";
+        if (!rate || isNaN(Number(rate))) newErrors.rate = "This field is required";
+        if (!mortgageType) newErrors.mortgageType = "This field is required";
+
+        return newErrors;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const validationErrors = validate();
+        setErrors(validationErrors);
+
+        if (Object.keys(validationErrors).length > 0) {
+            return;
+        }
+
+        onCalculate({ amount, term, rate, mortgageType });
+    };
+
+    const handleClear = () => {
+        setAmount("");
+        setTerm("");
+        setRate("");
+        setMortgageType("");
+        setErrors({});
+        onClear();
+    };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-6 md:gap-10 py-8 px-6 md:p-10 bg-white rounded-2xl font-body"
+      className="w-full flex flex-col gap-6 md:gap-10 py-8 px-6 md:p-10 bg-white md:rounded-t-3xl font-body"
     >
       <div className="flex flex-col gap-2 items-start md:flex-row md:items-center md:justify-between">
         <h2 className="font-body text-xl font-bold text-slate-900">
@@ -50,6 +71,7 @@ function MortgageForm({ onCalculate, onClear }) {
           symbolPosition="prefix"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
+          error={errors.amount}
         />
 
         <div className="flex flex-col gap-6 md:flex-row">
@@ -60,6 +82,7 @@ function MortgageForm({ onCalculate, onClear }) {
             symbolPosition="suffix"
             value={term}
             onChange={(e) => setTerm(e.target.value)}
+            error={errors.term}
           />
 
           <FormInput
@@ -69,6 +92,7 @@ function MortgageForm({ onCalculate, onClear }) {
             symbolPosition="suffix"
             value={rate}
             onChange={(e) => setRate(e.target.value)}
+            error={errors.rate}
           />
         </div>
 
@@ -94,6 +118,12 @@ function MortgageForm({ onCalculate, onClear }) {
             checked={mortgageType === "interestOnly"}
             onChange={(e) => setMortgageType(e.target.value)}
           />
+          
+          {errors.mortgageType && (
+                        <p role="alert" className="text-sm text-red font-medium leading-normal">
+                            {errors.mortgageType}
+                        </p>
+                    )}
         </fieldset>
       </div>
 
