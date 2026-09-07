@@ -8,7 +8,7 @@ const currencyFormatter = new Intl.NumberFormat('en-GB', {
 function ResultsPanel({ results }) {
     return (
         <div
-            className="flex flex-col gap-4 py-8 px-6 md:p-10 bg-slate-900 md:rounded-b-3xl lg:rounded-tr-3xl lg:rounded-bl-[5rem]"
+            className="flex flex-col justify-center gap-4 py-8 px-6 md:p-10 bg-slate-900 md:rounded-b-3xl lg:rounded-tr-3xl lg:rounded-bl-[5rem]"
             aria-live="polite"
             aria-atomic="true"
         >
