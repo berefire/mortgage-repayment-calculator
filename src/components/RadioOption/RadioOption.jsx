@@ -2,7 +2,7 @@ function RadioOption({ id, name, value, label, checked, onChange }) {
     return (
         <label
         htmlFor={id} 
-        className={`flex items-center gap-4 px-4 py-3 rounded-md border cursor-pointer ${ checked ? 'border-lime bg-lime/15' : 'border-slate-700'}`}
+        className={`flex items-center gap-4 px-4 py-3 rounded-md border cursor-pointer ${ checked ? 'border-lime bg-lime/15' : 'border-slate-300'}`}
         >
         <input
             type="radio"
