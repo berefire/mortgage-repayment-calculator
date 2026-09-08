@@ -29,6 +29,7 @@ function FormInput({
           id={id}
           type="text"
           inputMode="decimal"
+          required
           aria-invalid={!!error}
           aria-describedby={error ? errorId : undefined}
           className="flex-1 min-w-0 px-4 py-3 font-body font-bold text-slate-900 outline-none focus:bg-white"

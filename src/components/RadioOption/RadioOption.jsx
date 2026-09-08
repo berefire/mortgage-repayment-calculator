@@ -11,6 +11,7 @@ function RadioOption({ id, name, value, label, checked, onChange }) {
             value={value}
             checked={checked}
             onChange={onChange}
+            required
             className="peer sr-only"
         />
 
