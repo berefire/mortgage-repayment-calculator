@@ -6,48 +6,73 @@ import Button from "@/components/Button/Button";
 const calculatorIconSrc = `${import.meta.env.BASE_URL}assets/images/icon-calculator.svg`;
 
 function MortgageForm({ onCalculate, onClear }) {
-    const [amount, setAmount] = useState("");
-    const [term, setTerm] = useState("");
-    const [rate, setRate] = useState("");
-    const [mortgageType, setMortgageType] = useState("");
-    const [errors, setErrors] = useState({});
+  const [amount, setAmount] = useState("");
+  const [term, setTerm] = useState("");
+  const [rate, setRate] = useState("");
+  const [mortgageType, setMortgageType] = useState("");
+  const [errors, setErrors] = useState({});
 
-    const validate = () => {
-        const newErrors = {};
+  const parseField = (value) => {
+    const trimmed = String(value).trim();
+    if (trimmed === "") return { value: null, error: "This field is required" };
 
-        if (!amount || isNaN(Number(amount))) newErrors.amount = "This field is required";
-        if (!term || isNaN(Number(term))) newErrors.term = "This field is required";
-        if (!rate || isNaN(Number(rate))) newErrors.rate = "This field is required";
-        if (!mortgageType) newErrors.mortgageType = "This field is required";
+    const number = Number(trimmed);
+    if (!Number.isFinite(number))
+      return { value: null, error: "Enter a valid number" };
+    if (number <= 0) return { value: null, error: "Must be greater than 0" };
 
-        return newErrors;
-    };
+    return { value: number, error: null };
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+  const validate = () => {
+    const newErrors = {};
 
-        const validationErrors = validate();
-        setErrors(validationErrors);
+    const amountResult = parseField(amount);
+    if (amountResult.error) newErrors.amount = amountResult.error;
 
-        if (Object.keys(validationErrors).length > 0) {
-            return;
-        }
+    const termResult = parseField(term);
+    if (termResult.error) newErrors.term = termResult.error;
+    else if (!Number.isInteger(termResult.value) || termResult.value > 40) {
+      newErrors.term = "Enter a whole number of years (1–40)";
+    }
 
-        onCalculate({ amount, term, rate, mortgageType });
-    };
+    const rateResult = parseField(rate);
+    if (rateResult.error) newErrors.rate = rateResult.error;
+    else if (rateResult.value > 100) {
+      newErrors.rate = "Enter a realistic interest rate";
+    }
 
-    const handleClear = () => {
-        setAmount("");
-        setTerm("");
-        setRate("");
-        setMortgageType("");
-        setErrors({});
-        onClear();
-    };
+    if (!mortgageType) newErrors.mortgageType = "This field is required";
+
+    return newErrors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const validationErrors = validate();
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
+
+    onCalculate({ amount, term, rate, mortgageType });
+  };
+
+  const handleClear = () => {
+    setAmount("");
+    setTerm("");
+    setRate("");
+    setMortgageType("");
+    setErrors({});
+    onClear();
+  };
 
   return (
     <form
       onSubmit={handleSubmit}
+      noValidate
       className="w-full flex flex-col gap-6 md:gap-10 py-8 px-6 md:p-10 bg-white md:rounded-t-3xl font-body"
     >
       <div className="flex flex-col gap-2 items-start md:flex-row md:items-center md:justify-between">
@@ -96,7 +121,7 @@ function MortgageForm({ onCalculate, onClear }) {
           />
         </div>
 
-        <fieldset className="flex flex-col gap-3">
+        <fieldset aria-describedby={ errors.mortgageType ? "mortgageType-error" : undefined } className="flex flex-col gap-3">
           <legend className="font-body text-sm text-slate-700 mb-2">
             Mortgage Type
           </legend>
@@ -118,12 +143,16 @@ function MortgageForm({ onCalculate, onClear }) {
             checked={mortgageType === "interestOnly"}
             onChange={(e) => setMortgageType(e.target.value)}
           />
-          
+
           {errors.mortgageType && (
-                        <p role="alert" className="text-sm text-red font-medium leading-normal">
-                            {errors.mortgageType}
-                        </p>
-                    )}
+            <p
+              id="mortgageType-error"
+              role="alert"
+              className="text-sm text-red font-medium leading-normal"
+            >
+              {errors.mortgageType}
+            </p>
+          )}
         </fieldset>
       </div>
 
