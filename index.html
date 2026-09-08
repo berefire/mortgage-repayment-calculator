@@ -1,61 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Mortgage repayment calculator</title>
+  <title>Mortgage Repayment Calculator</title>
+  <meta name="description"
+    content="Calculate your monthly and total mortgage repayments for repayment or interest-only loans. A Frontend Mentor challenge built with React and Tailwind CSS." />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 0.6875rem; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mortgage Repayment Calculator" />
+  <meta property="og:description"
+    content="Calculate your monthly and total mortgage repayments for repayment or interest-only loans." />
+  <meta property="og:url" content="https://berefire.github.io/mortgage-repayment-calculator/" />
+  <meta property="og:image" content="https://berefire.github.io/mortgage-repayment-calculator/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Preview of the Mortgage Repayment Calculator app" />
+  <meta property="og:site_name" content="Mortgage Repayment Calculator" />
+
+  <!-- Twitter Card (not part of Open Graph, but reads most of the same tags as a fallback on X/Twitter) -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mortgage Repayment Calculator" />
+  <meta name="twitter:description"
+    content="Calculate your monthly and total mortgage repayments for repayment or interest-only loans." />
+  <meta name="twitter:image" content="https://berefire.github.io/mortgage-repayment-calculator/og-image.png" />
 </head>
+
 <body>
-
-  Mortgage Calculator
-  Clear All
-
-  Mortgage Amount
-
-  Mortgage Term
-
-  Interest Rate
-
-  Mortgage Type
-  Repayment
-  Interest Only
-
-  Calculate Repayments
-
-  <!-- Empty results start -->
-
-  Results shown here
-
-  Complete the form and click “calculate repayments” to see what 
-  your monthly repayments would be.
-
-  <!-- Empty results end -->
-
-  <!-- Completed results start -->
-
-  Your results
-
-  Your results are shown below based on the information you provided. 
-  To adjust the results, edit the form and click “calculate repayments” again.
-
-  Your monthly repayments
-
-  Total you'll repay over the term
-
-  <!-- Completed results end -->
-  
-  <footer class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </footer>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
+
 </html>
