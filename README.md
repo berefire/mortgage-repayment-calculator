@@ -71,7 +71,7 @@ Users should be able to:
 
 ### 🔗Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/mortgage-repayment-calculator-built-with-react-and-tailwind-css-v4-OKSebcSEJk](https://www.frontendmentor.io/solutions/mortgage-repayment-calculator-built-with-react-and-tailwind-css-v4-OKSebcSEJk)
 - Live Site URL: [https://berefire.github.io/mortgage-repayment-calculator/](https://berefire.github.io/mortgage-repayment-calculator/)
 
 ---
